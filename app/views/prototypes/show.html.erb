@@ -47,7 +47,7 @@
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <% @comments.each do |comment| %> <%# <%= " コメントのテキスト(コメントが複数あるのでeach文を使って実装する必要あり) "%>
-            <%# liの黒ポチも繰り返し処理したので、each文はliの上に書く%>
+            <%# liの黒ポチも繰り返し処理したいので、each文はliの上に書く%>
             <li class="comments_list">
               <%= comment.content %>
               <%# <%= link_to "（ ユーザー名 ）", root_path, class: :comment_user %>
