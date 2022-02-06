@@ -21,7 +21,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new #コントローラーからデータをビューに渡したいときはインスタンス変数を使う（@XXX）
     @prototype = Prototype.find(params[:id])
     @comments = @prototype.comments.includes(:user) #prototypeに紐付いたコメントを取得
   end

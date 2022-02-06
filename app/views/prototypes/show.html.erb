@@ -51,7 +51,9 @@
             <li class="comments_list">
               <%= comment.content %>
               <%# <%= link_to "（ ユーザー名 ）", root_path, class: :comment_user %>
-              <%= link_to comment.user.name, user_path, class: :comment_user %>
+              <%= link_to comment.user.name, user_path(comment.user.id), class: :comment_user %> <%# コメントに紐づくuserのnameを表示し、userのidに遷移するようにする%>
+              <%# @userはprototypesのshowアクションで定義されていないから使えない %>
+              <%# commentは49行目のcomment、commentは便宜的に設けられた変数なので、@commentにする必要はない %>
             </li>
             <% end %>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
@@ -60,3 +62,4 @@
     </div>
   </div>
 </main>
+[{id:1,coment:"ohayo"},{id:2,coment:"konbanha"}]
