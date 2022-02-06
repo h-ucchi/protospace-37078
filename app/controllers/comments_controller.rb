@@ -10,11 +10,6 @@ class CommentsController < ApplicationController
       render "prototypes/show" #prototypeのshowに戻る必要があるので、階層を定義する
     end
   end
-
-  def show #無くても良い（createアクションの中でshowアクションも記載しているため）
-    @comments = Comment.all(params[:prototype_id])
-  end
-
 end
 
 private
