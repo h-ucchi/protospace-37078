@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy, :update] #move_to_indexと同じ処理を表すため、こっちにまとめる
+  before_action :authenticate_user!, only: [:create, :destroy, :update] #move_to_user_sessionと同じ処理を表すため、こっちにまとめる
   before_action :set_prototype, only: [:edit, :show, :update, :destroy]
-  before_action :move_to_index, only: [:edit, :new]
+  before_action :move_to_user_session, only: [:edit, :new]
 
   def index
     @prototypes = Prototype.all
@@ -48,14 +48,14 @@ class PrototypesController < ApplicationController
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id) #permitメソッドを使用して、カラムに保存したいデータを選択
   end
 
-  def set_prototype #下部のmove_to_indexで@prototypeを使うので、private内に@prototypeを定義する必要あり
+  def set_prototype #下部のmove_to_user_sessionで@prototypeを使うので、private内に@prototypeを定義する必要あり
     # @prototypeを定義することで以下の記述が上記にもあれば、before_actionを記述することでまとめられる
     @prototype = Prototype.find(params[:id])
   end
 
-  def move_to_index
+  def move_to_user_session
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to user_session_path
     end
   end
 end
