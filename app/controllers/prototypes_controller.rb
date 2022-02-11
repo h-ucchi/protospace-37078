@@ -2,6 +2,7 @@ class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :update] #move_to_user_sessionと同じ処理を表すため、こっちにまとめる
   before_action :set_prototype, only: [:edit, :show, :update, :destroy]
   before_action :move_to_user_session, only: [:edit, :new]
+  before_action :move_to_root, only: [:edit]
 
   def index
     @prototypes = Prototype.all
@@ -56,6 +57,12 @@ class PrototypesController < ApplicationController
   def move_to_user_session
     unless user_signed_in?
       redirect_to user_session_path
+    end
+  end
+
+  def move_to_root
+    unless current_user.id == @prototype.user_id
+      redirect_to root_path
     end
   end
 end
